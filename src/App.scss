@@ -1,0 +1,82 @@
+@use 'index';
+
+// 吹き出しスタイル
+#speech-bubble-box {
+  width: 600px;
+  margin: auto;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  @mixin speech-bubble-style($color) {
+    width: 180px;
+    height: 80px;
+    text-align: center;
+    line-height: 78px;
+    font-weight: bold;
+    
+    &:after {
+      content: '';
+      width: 0px;
+      height: 0px;
+      border: solid 20px transparent;
+      border-top: solid 20px $color;
+      margin-left: 10px;
+      display: block;
+    }
+  }
+
+  #speech-bubble-a {
+    color: index.$bk;
+    background-color: index.$or;
+    @include speech-bubble-style(index.$or);
+  }
+
+  #speech-bubble-b {
+    color: index.$wh;
+    background-color: index.$bk;
+    @include speech-bubble-style(index.$bk);
+  }
+
+  #speech-bubble-c {
+    color: index.$or;
+    background-color: index.$wh;
+    @include speech-bubble-style(index.$wh);
+  }
+}
+
+// ボタンスタイル
+#button-box {
+  width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+
+  // クラス名とインデックスの連想配列を作成
+  $btns: ('btn-a': 1,'btn-b': 2,'btn-c': 3);
+
+  @each $btn, $index in $btns {
+    .#{$btn} {
+      // 共通スタイル
+      width: 180px;
+      height: 50px;
+      border-radius: 50px;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+
+      // インデックスで色を分岐
+      @if $index == 1 {
+        color: index.$bk;
+        background-color: index.$or;
+      } @else if $index == 2 {
+        color: index.$wh;
+        background-color: index.$bk;
+      } @else {
+        color: index.$or;
+        background-color: index.$wh;
+      }
+    }
+  }
+}
