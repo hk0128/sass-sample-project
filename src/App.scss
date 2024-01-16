@@ -80,3 +80,14 @@
     }
   }
 }
+
+// ラジオボタン
+#radio-box {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  margin: auto;
+  margin-top: 30px;
+  color: index.$bk;
+  font-weight: bold;
+}
